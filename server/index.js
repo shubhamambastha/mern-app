@@ -16,6 +16,7 @@ app.get('/', (req, res)=>{
     res.json({hello: "world"});
 })
 app.use('/api/auth/', routes.auth)
+app.use('/api/poll/', routes.polls)
 
 app.use(handle.notFound);
 app.use(handle.error)
@@ -25,7 +26,6 @@ db.connect()
 	.then(function () {
 		app.listen(PORT, ()=> {
 			console.log(`Application started on PORT ${PORT}`);
-			//console.log(process.env);
 		}).on('error', (error)=> {
 			console.log(`Unable to start app. Error >>>> ${error}`);
 		});

@@ -1,5 +1,6 @@
 module.exports={
-  ...require('./auth')
+  ...require('./auth'),
+  ...require('./polls')
 }
 
 module.exports.notFound = (req, res, next)=>{
@@ -9,7 +10,7 @@ module.exports.notFound = (req, res, next)=>{
 }
 
 module.exports.error = (err, req, res, next)=>{
-    return res.status(err.status || 500).json({
+    return res.status(err.status || 400).json({
       success: false,
       error: {
         message: err.message || 'Something went wrong.',

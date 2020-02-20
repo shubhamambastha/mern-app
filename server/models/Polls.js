@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const pollSchema = new mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref:'User'
     },
     question: String,
     options: [{
-        options: String,
+        option: String,
         votes: {
             type: Number,
             default: 0
