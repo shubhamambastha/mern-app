@@ -7,9 +7,11 @@ const bodyParser = require('body-parser')
 const handle = require('./controllers/index.js')
 const db = require('./models')
 const routes = require('./routes')
+const cors = require('cors')
 const app = express();
 const PORT = process.env.PORT;
 
+app.use(cors());
 app.use(bodyParser.json())
 
 app.get('/', (req, res)=>{
