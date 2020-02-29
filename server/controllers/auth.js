@@ -11,11 +11,14 @@ exports.register = async (req, res, next)=>{
         const token = jwt.sign({id, email}, process.env.SECRET)
 
         res.status(201).json({id, email, token})
-    } catch (error) {
-        if(error.code === 11000){
-            error.message = "User already taken"
+    } catch (err) {
+        if(err.code === 11000){
+            err.message = "User already taken"
         }
-        next(error)
+        return next({
+            status: 400,
+            message: err.message
+        });
     }
 }
 
@@ -30,11 +33,13 @@ exports.login = async (req, res, next)=>{
             const token = jwt.sign({id, email}, process.env.SECRET)
             res.status(200).json({id, email, token})
         } else{
-            res.send("Users not found")
+            throw new Error();
         }
 
     } catch (error) {
-        error.message = "invalid error"
-        next(error)
+        return next({ 
+            status: 400, 
+            message: 'Invalid Username/Password' 
+        });
     }
 }
