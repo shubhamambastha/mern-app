@@ -11,4 +11,4 @@ router.get('/:id', controller.getPolls);
 router.post('/:id',auth, controller.vote);
 router.delete('/:id',auth, controller.deletePoll);
 
-module.exports = router
+module.exports = router;

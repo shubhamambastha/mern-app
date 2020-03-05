@@ -21,6 +21,7 @@ export const authUser = (path, data)=>{
             dispatch(removeError())
         } catch (err) {
             const error = err.response.data.error;
+            console.log("error in action auth", error);
             dispatch(addError(error.message));
         }
     }
@@ -30,7 +31,7 @@ export const logout = ()=>{
     return dispatch =>{
         localStorage.clear();
         api.setToken(null);
-        dispatch(setCurrentUser());
+        dispatch(setCurrentUser({}));
         dispatch(removeError());
     };
 }

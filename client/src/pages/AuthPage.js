@@ -1,8 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import Auth from "../components/Auth";
-import ErrorMsg from "../components/ErrorMsg";
-
+import ErrorMessage from "../components/ErrorMsg";
 
 const AuthPage =({authType, isAuthenticated})=>{
 
@@ -14,7 +13,7 @@ const AuthPage =({authType, isAuthenticated})=>{
 
     return(
         <div>
-            <ErrorMsg />
+            <ErrorMessage />
             <Auth authType={authType} />
         </div>
     )

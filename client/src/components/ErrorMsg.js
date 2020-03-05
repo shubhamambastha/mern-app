@@ -1,10 +1,11 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 
-const ErrorMsg = ({error})=>(
+const ErrorMessage = ({ error }) => (
     <Fragment>
-        {error && <div>{error.message}</div>}
+    {console.log("error here",error)}
+        {error && error.message && <div className="error">{error.message.message}</div>}
     </Fragment>
 );
 
-export default connect(store =>({error:store.error}))(ErrorMsg);
+export default connect(store => ({ error: store.error }))(ErrorMessage);
