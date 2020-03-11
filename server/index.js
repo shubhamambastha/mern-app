@@ -13,10 +13,8 @@ const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res)=>{
-    res.json({hello: "world"});
-})
 app.use('/api/auth/', routes.auth)
 app.use('/api/poll/', routes.polls)
 

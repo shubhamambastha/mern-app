@@ -5,8 +5,10 @@ exports.showPolls = async (req, res, next)=>{
         const polls = await db.Polls.find().populate('user', ['email', 'id']);
         res.status(200).json(polls);
     } catch (error) {
-        error.status = 400;
-        next(error);
+        return next({
+            status: 400,
+            message: error.message,
+        });
     }
 }
 
@@ -29,8 +31,10 @@ exports.createPoll = async (req, res, next)=>{
 
         res.status(201).json({...polls._doc, user: user._id});
     } catch (error) {
-        error.status = 400;
-        next(error);
+        return next({
+            status: 400,
+            message: error.message,
+        });
     }
 }
 
@@ -41,8 +45,10 @@ exports.usersPolls = async (req, res, next)=>{
 
         res.status(201).json(user.polls);
     } catch (error) {
-        error.status = 400;
-        next(error);
+        return next({
+            status: 400,
+            message: error.message,
+        });
     }
 }
 
@@ -57,8 +63,10 @@ exports.getPolls = async (req, res, next)=>{
 
         res.status(200).json(poll);
     } catch (error) {
-        error.status = 400;
-        next(error);
+        return next({
+            status: 400,
+            message: error.message,
+        });
     }
 }
 
@@ -84,10 +92,12 @@ exports.deletePoll = async (req, res, next)=>{
         await user.save()
         await poll.remove()
 
-        res.status(202).json(poll);
+        res.status(202).json({ poll, deleted: true });
     } catch (error) {
-        error.status = 400;
-        next(error);
+        return next({
+            status: 400,
+            message: error.message,
+        });
     }
 }
 
@@ -125,7 +135,9 @@ exports.vote = async (req, res, next)=>{
             throw new Error('No Answer Provided');
         }
     } catch (error) {
-        error.status = 400;
-        next(error);
+        return next({
+            status: 400,
+            message: error.message,
+        });
     }
 }

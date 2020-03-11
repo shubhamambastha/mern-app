@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 
 const ErrorMessage = ({ error }) => (
     <Fragment>
-    {console.log("error here",error)}
-        {error && error.message && <div className="error">{error.message.message}</div>}
+    {console.log("error here in client compo",error)}
+        {error && error.message && <div className="error">{error.message}</div>}
     </Fragment>
 );
 
