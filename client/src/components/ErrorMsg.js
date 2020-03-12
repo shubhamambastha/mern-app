@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 const ErrorMessage = ({ error }) => (
     <Fragment>
     {console.log("error here in client compo",error)}
-        {error && error.message && <div className="error">{error.message}</div>}
+        {error && error.message && <div className="error">{error.message.message}</div>}
     </Fragment>
 );
 

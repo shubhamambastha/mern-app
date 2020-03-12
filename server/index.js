@@ -17,18 +17,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/auth/', routes.auth)
 app.use('/api/poll/', routes.polls)
-
-app.use(handle.notFound);
+app.use((req, res, next) => {
+	let err = new Error('Not Found');
+	err.status = 404;
+	next(err);
+});
 app.use(handle.error)
 
 
 db.connect()
 	.then(function () {
-		app.listen(PORT, ()=> {
+		app.listen(PORT, () => {
 			console.log(`Application started on PORT ${PORT}`);
-		}).on('error', (error)=> {
+		}).on('error', (error) => {
 			console.log(`Unable to start app. Error >>>> ${error}`);
 		});
-	}).catch( (error)=> {
+	}).catch((error) => {
 		console.log(`Failed to setup connecton with database ${error}`);
-    });	
+	});	
